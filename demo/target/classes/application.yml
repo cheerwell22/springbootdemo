@@ -5,7 +5,7 @@ server:
 spring:
   devtools:
     restart:
-      enabled: true     #������Ϊ���Ȳ���ģ���mybatis���޹ص�
+      enabled: false     #������Ϊ���Ȳ���ģ���mybatis���޹ص�
 
    # H2 DATABASE CONFIG
     datasource:
@@ -24,13 +24,35 @@ spring:
         path: /console
 
 #mybatis
-mybatis:
-  mapper-locations: classpath*:/mapper/**Mapper.xml   #��xml�ļ�����com.XX.mapper.*�п��ܻ�����ҵ������⣬�����������resource�µ�mapper��
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
   #ʵ��ɨ�裬���package�ö��Ż��߷ֺŷָ�
-  typeAliasesPackage: com.example.demo.entity  #������ʵ�����λ��
+  typeAliasesPackage: com.example.demo.entity
+  typeEnumsPackage: com.example.demo.entity.enums
+  global-config:
+    #��������  0:"���ݿ�ID����", 1:"�û�����ID",2:"ȫ��ΨһID (��������ΨһID)", 3:"ȫ��ΨһID UUID";
+    id-type: 2
+    #�ֶβ��� 0:"�����ж�",1:"�� NULL �ж�"),2:"�ǿ��ж�"
+    field-strategy: 2
+    #�շ��»���ת��
+    db-column-underline: true
+    #ˢ��mapper ��������
+    refresh-mapper: true
+    #���ݿ��д�»���ת��
+    #capital-mode: true
+    #���нӿ�ʵ��������
+    #key-generator: com.baomidou.springboot.xxx
+    #�߼�ɾ�����ã�����3�����ã�
+    logic-delete-value: 0
+    logic-not-delete-value: 1
+    sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
+    #�Զ��������Խӿ�ʵ��
+    #meta-object-handler: com.baomidou.springboot.xxx
+    #�Զ���SQLע����
+    #sql-injector: com.baomidou.springboot.xxx
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
 #logging
 logging:
-  level: debug
+  level: warn

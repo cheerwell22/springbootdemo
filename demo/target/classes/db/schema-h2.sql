@@ -1,6 +1,3 @@
-
-DROP TABLE IF EXISTS user;
-
 CREATE TABLE user
 (
 	test_id BIGINT(20) NOT NULL COMMENT '主键ID',
