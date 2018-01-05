@@ -1,0 +1,36 @@
+server:
+    port: 8080
+
+#spring
+spring:
+  devtools:
+    restart:
+      enabled: true     #这里是为了热部署的，与mybatis是无关的
+
+   # H2 DATABASE CONFIG
+    datasource:
+      type: com.zaxxer.hikari.HikariDataSource
+      schema: classpath:/db/schema-h2.sql
+      data: classpath:/db/data-h2.sql
+      url: jdbc:h2:mem:testdb
+      username: sa
+      password: sa
+      platform: h2
+      initialize: true
+      continue-on-error: true
+    h2:
+      console:
+        enabled: true
+        path: /console
+
+#mybatis
+mybatis:
+  mapper-locations: classpath*:/mapper/**Mapper.xml   #把xml文件放在com.XX.mapper.*中可能会出现找到的问题，这里把他放在resource下的mapper中
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.example.demo.entity  #这里是实体类的位置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+#logging
+logging:
+  level: debug
