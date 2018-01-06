@@ -1,11 +1,10 @@
 package com.baomidou.springboot.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableLogic;
-import com.baomidou.springboot.entity.enums.AgeEnum;
-import com.baomidou.springboot.entity.enums.PhoneEnum;
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.Data;
 
 /**
@@ -13,42 +12,29 @@ import lombok.Data;
  */
 @SuppressWarnings("serial")
 @Data
-public class User extends SuperEntity<User> {
+@TableName("USER")
+public class User extends Model<User> {
 
+    private Long test_id;
 
-    /**
-     * 名称
-     */
+    private Long tenant_id;
+
     private String name;
-    /**
-     * 年龄
-     */
-    private AgeEnum age;
-    /**
-     * 这里故意演示注解可无
-     */
-    @TableField("test_type")
-    @TableLogic
-    private Integer testType;
 
-    private Date testDate;
+    private Integer age;
+
+    private Integer test_type;
+
+    private Date test_date;
 
     private Long role;
-    private PhoneEnum phone;
 
-    public User() {
+    private String phone;
+
+    @Override
+    protected Serializable pkVal() {
+        return this.test_id;
     }
 
-    public User(Long id, String name, AgeEnum age, Integer testType) {
-        this.setId(id);
-        this.name = name;
-        this.age = age;
-        this.testType = testType;
-    }
 
-    public User(String name, AgeEnum age, Integer testType) {
-        this.name = name;
-        this.age = age;
-        this.testType = testType;
-    }
 }

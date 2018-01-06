@@ -1,7 +1,7 @@
 package com.baomidou.springboot.service.impl;
 
+import java.util.Map;
 import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
@@ -25,6 +25,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 	@Override
 	public List<User> selectListBySQL() {
 		return baseMapper.selectListBySQL();
+	}
+
+	@Override
+	public Map getList(Integer i) {
+		return baseMapper.getListt(i);
 	}
 
 }

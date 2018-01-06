@@ -1,8 +1,10 @@
 package com.baomidou.springboot.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 
 import com.baomidou.springboot.entity.User;
@@ -20,4 +22,5 @@ public interface UserMapper extends BaseMapper<User> {
     @Select("select test_id as id, name, age, test_type from user")
     List<User> selectListBySQL();
 
+    Map getListt(Integer i);
 }
