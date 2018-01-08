@@ -23,17 +23,17 @@ public class GeneratorServiceEntity {
     @Test
     public void generateCode(){
         String packageName = "com.baomidou.springboot";
-        generateByTables(packageName, "user", "role");
+        generateByTables(packageName, "role");
     }
 
     private void generateByTables(String packageName, String... tableNames){
         GlobalConfig config = new GlobalConfig();
-        String dbUrl = "jdbc:mysql://localhost:3306/mybatis-plus";
+        String dbUrl = "jdbc:mysql://172.16.10.127:3306/test";
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
         dataSourceConfig.setDbType(DbType.MYSQL)
                 .setUrl(dbUrl)
-                .setUsername("root")
-                .setPassword("")
+                .setUsername("app")
+                .setPassword("app*()")
                 .setDriverName("com.mysql.jdbc.Driver");
         StrategyConfig strategyConfig = new StrategyConfig();
         strategyConfig
@@ -44,7 +44,7 @@ public class GeneratorServiceEntity {
                 .setInclude(tableNames);//修改替换成你需要的表名，多个表名传数组
         config.setActiveRecord(false)
                 .setAuthor("K神带你飞")
-                .setOutputDir("d:\\codeGen")
+                .setOutputDir("C:\\Users\\Administrator\\Desktop\\sbc\\springbootdemo\\baomidou-mybatisplus-spring-boot-master\\mybatisplus-spring-boot")
                 .setFileOverride(true);
         new AutoGenerator().setGlobalConfig(config)
                 .setDataSource(dataSourceConfig)
@@ -54,6 +54,10 @@ public class GeneratorServiceEntity {
                                 .setParent(packageName)
                                 .setController("controller")
                                 .setEntity("entity")
+                                .setMapper("mapper")
+                                .setXml("mapper")
+                                .setService("service")
+                                .setServiceImpl("service.impl")
                 ).execute();
     }
 }

@@ -12,6 +12,6 @@
 	</delete>
 
 	<select id="testFind" resultType="java.util.HashMap">
-		select * from USER
+		select * from user
 	</select>
 </mapper>

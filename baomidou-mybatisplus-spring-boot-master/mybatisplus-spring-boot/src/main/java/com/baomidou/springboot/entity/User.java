@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @SuppressWarnings("serial")
 @Data
-@TableName("USER")
+@TableName("user")
 public class User extends Model<User> {
 
     private Long test_id;
